@@ -5,7 +5,11 @@ const citySchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    theatres: {
-        type: [String]
-    }
+    theatres: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Theatre'
+    }]
 });
+
+const City = new mongoose.Model('City', citySchema);
+module.exports = City;
