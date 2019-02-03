@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         ref: 'City',
         required: true
     },
+    oneSignal_Id: String,
     isAdmin: {
         type: Boolean
     }

@@ -25,6 +25,7 @@ async function createUser(name, email, password, city) {
             email: email,
             password: password,
             city: city,
+            oneSignal_Id
             isAdmin: true
         });
 
@@ -39,3 +40,20 @@ async function createUser(name, email, password, city) {
         })
     })
 }
+
+async function findUserByName(name) {
+    return new Promise(async (resolve, reject) => {
+        await User.findOne({name: name}, function (err, user) {
+            if(err) {
+                reject(err)
+            } else if(user) {
+                resolve(user)
+            } else {
+                reject({name: 'Not found', message: `Cannot find any user for ${name}`})
+            }
+        })
+    })
+}
+
+module.exports.login = login;
+module.exports.createUser = createUser;
