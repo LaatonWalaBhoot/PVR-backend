@@ -1,5 +1,9 @@
 const User = require('../models/user');
 const Movie = require('../models/movie');
+const City = require('../models/city');
+const Theatre = require('../models/theatre');
+const sgMail = require('@sendgrid/mail');
+
 
 async function login(name) {
     return new Promise(async (resolve, reject) => {
@@ -17,13 +21,13 @@ async function login(name) {
     })
 }
 
-async function createUser(name, email, password, city, isAdmin) {
+async function createUser(name, email, password, cityId, isAdmin) {
     return new Promise(async (resolve, reject) => {
         const user = new User({
             name: name,
             email: email,
             password: password,
-            city: city,
+            city: cityId,
             isAdmin: isAdmin
         });
 
@@ -57,15 +61,21 @@ async function getAllMovies() {
     return await Movie.find();
 }
 
+async function getAllCities() {
+    return await City.find();
+}
+
 async function findUsersForMovie(movieName) {
     return new Promise( async(resolve, reject) => {
-        await User.find()
+        await User.find({})
             .populate({
                 path: 'city',
                 populate: {
                     path: 'theatres',
+                    select: 'theatres -_id',
                     populate: {
                         path: 'movies',
+                        select: 'name -_id',
                         model: 'Movie',
                         match: {name: movieName}
                     }
@@ -75,16 +85,79 @@ async function findUsersForMovie(movieName) {
                 if(err) {
                     reject(err)
                 } else {
-                    resolve(docs)
+                    docs.filter(function (doc) {
+                        doc.city.theatres.filter(function (theatre) {
+                            if(theatre.movies.length > 0) {
+                                console.log(doc.email)
+                            }
+                        });
+                    });
+                    resolve('Success')
                 }
             })
     })
 }
 
+async function createMovie(name) {
+    const movie = new Movie({
+        name: name
+    });
+
+    return await movie.save()
+}
+
+async function createCity(name) {
+    const city = new City({
+        name: name
+    });
+
+    return await city.save()
+}
+
+async function createTheatre(theatreName) {
+    const theatre = new Theatre({
+        name: theatreName,
+        movies: []
+    });
+
+    return await theatre.save()
+}
+
+async function addMovieToTheatre(movieId, theatreId) {
+    const movie = await Movie.findById(movieId);
+    const theatre = await Theatre.findById(theatreId);
+    theatre.movies.push(movie);
+    return await theatre.save();
+}
+
+async function addTheatreToCity(theatreId, cityId) {
+    const theatre = await Theatre.findById(theatreId);
+    const city = await City.findById(cityId);
+    city.theatres.push(theatre);
+    return await city.save();
+}
+
+async function sendEmail(to, from, subject, text) {
+    sgMail.setApiKey(config.get('email_key').toString());
+    const msg = {
+        to: to,
+        from: from,
+        subject: subject,
+        text: text,
+    };
+    return sgMail.send(msg)
+}
 
 
 module.exports.login = login;
 module.exports.createUser = createUser;
 module.exports.findUserByName = findUserByName;
 module.exports.findUsersForMovie = findUsersForMovie;
-module.exports.getAllMovies = getAllMovies();
+module.exports.getAllMovies = getAllMovies;
+module.exports.getAllCities = getAllCities;
+module.exports.createMovie = createMovie;
+module.exports.createCity = createCity;
+module.exports.createTheatre = createTheatre;
+module.exports.addMovieToTheatre = addMovieToTheatre;
+module.exports.addTheatreToCity = addTheatreToCity;
+module.exports.sendEmail = sendEmail;
