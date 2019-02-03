@@ -11,7 +11,8 @@ const theatreSchema = new mongoose.Schema({
         required: true
     },
     movies: [{
-        type: String
+        type: String,
+        unique: true
     }]
 });
 
