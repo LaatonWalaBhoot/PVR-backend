@@ -3,17 +3,25 @@ const Movie = require('../models/movie');
 const City = require('../models/city');
 const Theatre = require('../models/theatre');
 const sgMail = require('@sendgrid/mail');
+const bcrypt = require('bcrypt');
 
-
-async function login(name) {
+async function login(name, password) {
     return new Promise(async (resolve, reject) => {
         await User.findOne({
             name: name
-        }, function (err, user) {
+        },async function (err, user) {
             if(err) {
                 reject(err)
             } else if(user) {
-                resolve(user)
+                if(user.isAdmin) {
+                    if(await bcrypt.compare(password, user.password)) {
+                        resolve(user)
+                    } else {
+                        reject({name: 'Authentication Error', message: `Incorrect Password`})
+                    }
+                } else {
+                    reject({name: 'Not Authorised', message: `You don't have administrator rights`})
+                }
             } else {
                 reject({name: 'Not found', message: `User not found for ${name}`})
             }
@@ -23,10 +31,11 @@ async function login(name) {
 
 async function createUser(name, email, password, cityId, isAdmin) {
     return new Promise(async (resolve, reject) => {
+        const salt = await bcrypt.genSalt(10);
         const user = new User({
             name: name,
             email: email,
-            password: password,
+            password: await bcrypt.hash(password, salt),
             city: cityId,
             isAdmin: isAdmin
         });
