@@ -4,7 +4,6 @@ const City = require('../models/city');
 const Theatre = require('../models/theatre');
 const sgMail = require('@sendgrid/mail');
 
-
 async function login(name, password) {
     return new Promise(async (resolve, reject) => {
         await User.findOne({
