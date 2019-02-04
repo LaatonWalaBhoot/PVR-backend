@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.render('index.pug')
 });
 
-//check for private key
+// check for private key
 if(!config.get('jwtPrivateKey')) {
     throw new Error('ERROR: jwtPrivateKey is not defined...');
 }
