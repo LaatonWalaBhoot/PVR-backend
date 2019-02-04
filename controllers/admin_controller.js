@@ -3,7 +3,7 @@ const Movie = require('../models/movie');
 const City = require('../models/city');
 const Theatre = require('../models/theatre');
 const sgMail = require('@sendgrid/mail');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 async function login(name, password) {
     return new Promise(async (resolve, reject) => {
