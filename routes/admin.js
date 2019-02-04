@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {createToken, verifyToken, sendError} = require('../middlewares/auth');
-const genPassword = require('../middlewares/password');
 const {
     login,
     createUser,
@@ -28,7 +27,7 @@ router.post('/login', async (req, res) => {
         .catch(err => res.status(500).send(sendError(true, err.name, err.message)))
 });
 
-router.post('/signUp', genPassword,async (req, res) => {
+router.post('/signUp',async (req, res) => {
     await createUser(req.query.name, req.query.email, req.query.password, req.query.city, true)
         .then((user) => {
             res.header('x-auth-token', createToken(user._id, true))
