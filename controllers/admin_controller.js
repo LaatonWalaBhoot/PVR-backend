@@ -118,19 +118,11 @@ async function createMovie(name) {
 }
 
 async function createCity(name) {
-    return new Promise(async (resolve, reject) => {
-        const city = new City({
-            name: name
-        });
+    const city = new City({
+        name: name
+    });
 
-        await city.save(function (err, city) {
-            if(err) {
-                reject(err)
-            } else {
-                resolve(city)
-            }
-        })
-    })
+    return await city.save()
 }
 
 async function createTheatre(theatreName) {
@@ -139,7 +131,7 @@ async function createTheatre(theatreName) {
         movies: []
     });
 
-    await theatre.save()
+    return await theatre.save()
 }
 
 async function addMovieToTheatre(movieId, theatreId) {

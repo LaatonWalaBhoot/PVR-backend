@@ -81,13 +81,12 @@ router.post('/createMovie', async (req, res) => {
 });
 
 router.post('/createCity', async (req, res) => {
-    await createCity(req.query.name)
-        .then((city) => res.status(200).send(city))
-        .catch(err => res.status(500).send(sendError(true, err.name, err.message)))
+    const city = await createCity(req.query.name);
+    res.status(200).send(city);
 });
 
 router.post('/createTheatre', async (req, res) => {
-    const theatre = await createTheatre(req.query.theatreName);
+    const theatre = await createTheatre(req.query.name);
     res.status(200).send(theatre);
 });
 
