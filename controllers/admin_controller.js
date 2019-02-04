@@ -3,7 +3,7 @@ const Movie = require('../models/movie');
 const City = require('../models/city');
 const Theatre = require('../models/theatre');
 const sgMail = require('@sendgrid/mail');
-const bcrypt = require('bcrypt-nodejs');
+
 
 async function login(name, password) {
     return new Promise(async (resolve, reject) => {
@@ -14,11 +14,7 @@ async function login(name, password) {
                 reject(err)
             } else if(user) {
                 if(user.isAdmin) {
-                    if(await bcrypt.compare(password, user.password)) {
-                        resolve(user)
-                    } else {
-                        reject({name: 'Authentication Error', message: `Incorrect Password`})
-                    }
+                    resolve(user)
                 } else {
                     reject({name: 'Not Authorised', message: `You don't have administrator rights`})
                 }
@@ -31,7 +27,6 @@ async function login(name, password) {
 
 async function createUser(name, email, password, cityId, isAdmin) {
     return new Promise(async (resolve, reject) => {
-        // const salt = await bcrypt.genSalt(10);
         const user = new User({
             name: name,
             email: email,
