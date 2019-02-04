@@ -20,6 +20,18 @@ if(!config.get('jwtPrivateKey')) {
     throw new Error('ERROR: jwtPrivateKey is not defined...');
 }
 
+//setting up logger
+winston.add(new winston.transports.File({
+    filename: 'logfile.log',
+    handleExceptions: true
+}));
+winston.add(new winston.transports.Console());
+
+//handling rejected promises
+process.on('unhandledRejection', (ex) => {
+    throw ex
+});
+
 //INIT MONGODB
 mongoose.connect(config.get('db'), {useNewUrlParser: true, useCreateIndex: true})
     .then(() => console.log('Connected to MongoDb...'))
