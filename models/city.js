@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const citySchema = new mongoose.Schema({
     name: {
         type: String,
-        unique: true,
         required: true
     },
     theatres: [{
@@ -12,5 +11,5 @@ const citySchema = new mongoose.Schema({
     }]
 });
 
-const City = new mongoose.Model('City', citySchema);
+const City = new mongoose.model('City', citySchema);
 module.exports = City;

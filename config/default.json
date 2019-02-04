@@ -1,3 +1,5 @@
 {
-    "db": "mongodb://localhost/PVRdb"
+    "jwtPrivateKey": "",
+    "db": "mongodb://localhost/PVRdb",
+    "email_key": ""
 }

@@ -1,3 +1,5 @@
 {
-    "db": ""
+    "jwtPrivateKey": "PVR_JWT_KEY",
+    "db": "PVR_DB",
+    "email_key": "PVR_EMAIL_KEY"
 }
