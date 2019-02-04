@@ -31,11 +31,11 @@ async function login(name, password) {
 
 async function createUser(name, email, password, cityId, isAdmin) {
     return new Promise(async (resolve, reject) => {
-        const salt = await bcrypt.genSalt(10);
+        // const salt = await bcrypt.genSalt(10);
         const user = new User({
             name: name,
             email: email,
-            password: await bcrypt.hash(password, salt),
+            password: password,
             city: cityId,
             isAdmin: isAdmin
         });
