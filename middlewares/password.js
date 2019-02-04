@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt-nodejs');
 
-async function genPassword(password) {
+async function genPassword(req, res, next) {
     const salt = await bcrypt.genSalt(10);
-    password = await bcrypt.hash(password, salt);
-    return password
+    req.query.password = await bcrypt.hash(req.query.password, salt);
+    next()
 }
 
 module.exports = genPassword;

@@ -28,9 +28,8 @@ router.post('/login', async (req, res) => {
         .catch(err => res.status(500).send(sendError(true, err.name, err.message)))
 });
 
-router.post('/signUp',async (req, res) => {
-    const password = await genPassword(req.query.password);
-    await createUser(req.query.name, req.query.email, password, req.query.city, true)
+router.post('/signUp', genPassword,async (req, res) => {
+    await createUser(req.query.name, req.query.email, req.query.password, req.query.city, true)
         .then((user) => {
             res.header('x-auth-token', createToken(user._id, true))
                 .status(200)
