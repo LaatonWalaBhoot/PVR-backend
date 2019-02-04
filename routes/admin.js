@@ -83,7 +83,7 @@ router.post('/createMovie', async (req, res) => {
 router.post('/createCity', async (req, res) => {
     await createCity(req.query.name)
         .then((city) => res.status(200).send(city))
-        .catch(err => sendError(true, err.name, err.message))
+        .catch(err => res.status(500).send(sendError(true, err.name, err.message)))
 });
 
 router.post('/createTheatre', async (req, res) => {
