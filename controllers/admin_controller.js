@@ -98,6 +98,8 @@ async function findUsersForMovie(movieName) {
     })
 }
 
+
+//UTILITY METHODS FOR DUMMY DATA
 async function createMovie(name) {
     const movie = new Movie({
         name: name
@@ -137,6 +139,8 @@ async function addTheatreToCity(theatreId, cityId) {
     return await city.save();
 }
 
+
+//EMAIL CONFIGURATION
 async function sendEmail(to, from, subject, text) {
     sgMail.setApiKey(config.get('email_key').toString());
     const msg = {
