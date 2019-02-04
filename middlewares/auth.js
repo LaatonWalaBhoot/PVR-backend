@@ -18,8 +18,8 @@ function verifyToken(req, res, next) {
     })
 }
 
-function createToken(userId) {
-    return jwt.sign({_id: userId}, config.get('jwtPrivateKey'), {
+function createToken(userId, isAdmin) {
+    return jwt.sign({_id: userId, isAdmin: isAdmin}, config.get('jwtPrivateKey'), {
         expiresIn: 86400 * 30
     })
 }

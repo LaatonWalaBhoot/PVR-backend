@@ -18,9 +18,9 @@ const {
 
 //POST REQUESTS
 router.post('/login', async (req, res) => {
-    await login(req.query.name)
+    await login(req.query.name, req.query.password)
         .then((user) => {
-            res.header('x-auth-token', createToken(user._id))
+            res.header('x-auth-token', createToken(user._id, true))
                 .status(200)
                 .send(user)
         })
@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
 router.post('/signUp', async (req, res) => {
     await createUser(req.query.name, req.query.email, req.query.password, req.query.city, true)
         .then((user) => {
-            res.header('x-auth-token', createToken(user._id))
+            res.header('x-auth-token', createToken(user._id, true))
                 .status(200)
                 .send(user)
         })
