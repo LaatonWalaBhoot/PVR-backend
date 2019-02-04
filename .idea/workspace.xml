@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3dad9618-67bb-4da6-a74c-7f14fe7efa3a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/admin_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/admin_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/password.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/password.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -36,11 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/admin.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-206">
-              <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="63">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/middlewares/password.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="15" lean-forward="true" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -63,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/admin_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-445">
+            <state relative-caret-position="-703">
               <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
             </state>
           </provider>
@@ -92,9 +99,9 @@
         <option value="$PROJECT_DIR$/config/custom-environment-variables.json" />
         <option value="$PROJECT_DIR$/models/theatre.js" />
         <option value="$PROJECT_DIR$/models/city.js" />
-        <option value="$PROJECT_DIR$/routes/admin.js" />
         <option value="$PROJECT_DIR$/middlewares/password.js" />
         <option value="$PROJECT_DIR$/controllers/admin_controller.js" />
+        <option value="$PROJECT_DIR$/routes/admin.js" />
       </list>
     </option>
   </component>
@@ -188,12 +195,12 @@
       <option name="presentableId" value="Default" />
       <updated>1549202159256</updated>
       <workItem from="1549202161468" duration="34816000" />
-      <workItem from="1549272327237" duration="2698000" />
+      <workItem from="1549272327237" duration="2966000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37514000" />
+    <option name="totallyTimeSpent" value="37782000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -340,20 +347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-206">
-          <caret line="30" column="34" lean-forward="true" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middlewares/password.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" lean-forward="true" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/theatre.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -370,8 +363,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/admin_controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-445">
+        <state relative-caret-position="-703">
           <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middlewares/password.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" lean-forward="true" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
