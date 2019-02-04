@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Movie = require('../models/movie');
 const City = require('../models/city');
 const Theatre = require('../models/theatre');
+const config = require('config');
 const sgMail = require('@sendgrid/mail');
 
 async function login(name, password) {
@@ -72,7 +73,7 @@ async function getAllCities() {
     return await City.find();
 }
 
-async function findUsersForMovie(movieName) {
+async function findUsersForMovie(movieName, from , subject, text) {
     return new Promise( async(resolve, reject) => {
         await User.find({})
             .populate({
@@ -93,9 +94,9 @@ async function findUsersForMovie(movieName) {
                     reject(err)
                 } else {
                     docs.filter(function (doc) {
-                        doc.city.theatres.filter(function (theatre) {
+                        doc.city.theatres.filter(async function (theatre) {
                             if(theatre.movies.length > 0) {
-                                console.log(doc.email)
+                                await sendEmail(doc.email, from, subject, text)
                             }
                         });
                     });

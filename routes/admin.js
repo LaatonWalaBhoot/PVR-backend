@@ -46,7 +46,7 @@ router.post('/createUser', verifyToken,async (req, res) => {
 
 router.post('/sendEmailForUser', verifyToken,async (req, res) => {
     await sendEmail(req.body.to, req.body.from, req.body.subject, req.body.text)
-        .then((result) => res.status(200).send(result.statusMessage))
+        .then(() => res.status(200).send('Success'))
         .catch(err => res.status(500).send(sendError(true, err.name, err.message)))
 });
 
